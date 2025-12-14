@@ -1,0 +1,16 @@
+import { Pool } from 'pg';
+import { drizzle } from 'drizzle-orm/node-postgres';
+import {  pgTable, serial, text, integer } from 'drizzle-orm/pg-core';
+
+import * as schema from './schema';
+
+// Create connection pool
+const pool = new Pool({
+  host: process.env.PGHOST,
+  port: parseInt(process.env.PGPORT ?? '5432'),
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,
+});
+
+export const db = drizzle(pool, { schema });

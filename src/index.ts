@@ -1,60 +1,33 @@
 import { Hono, MiddlewareHandler } from 'hono';
+import { serve } from '@hono/node-server';
 
-// Define context types for TypeScript
-type Env = {
-  Variables: {
-    cookies: Record<string, string>;
-    targetHost: string;
-  };
-};
+import { db } from './db';
+import * as schema from './db/schema';
+import * as middleware from './middleware'
+import { eq } from 'drizzle-orm';
 
 const app = new Hono<Env>();
 
-const DEFAULT_HOST = 'news.ycombinator.com';
-const PHILIP_HOST = 'google.com';
+app.use(
+  '*',
+  middleware.parseCookies,
+  middleware.selectTargetHost,
+  middleware.logRequest
+);
 
-// Middleware: Parse cookies from header
-const parseCookies: MiddlewareHandler<Env> = async (c, next) => {
-  const cookies: Record<string, string> = {};
-  const cookieHeader = c.req.header('cookie');
-  
-  if (cookieHeader) {
-    cookieHeader.split(';').forEach(cookie => {
-      const [key, value] = cookie.trim().split('=');
-      if (key && value) {
-        cookies[key] = value;
-      }
-    });
-  }
-  
-  c.set('cookies', cookies);
-  await next();
-};
-
-// Middleware: Select target host based on user cookie
-const selectTargetHost: MiddlewareHandler<Env> = async (c, next) => {
-  const cookies = c.get('cookies');
-  const targetHost = cookies.user === 'philip' ? PHILIP_HOST : DEFAULT_HOST;
-  
-  c.set('targetHost', targetHost);
-  await next();
-};
-
-// Middleware: Log the proxied request
-const logRequest: MiddlewareHandler<Env> = async (c, next) => {
-  const targetHost = c.get('targetHost');
-  console.log(`Proxying: ${c.req.path} -> https://${targetHost}${c.req.path}`);
-  await next();
-};
-
-// Compose all middleware
-app.use('*', parseCookies, selectTargetHost, logRequest);
-
-// Main proxy handler
 app.all('*', async (c) => {
   const targetHost = c.get('targetHost');
   const url = new URL(c.req.url);
+  const host = url.host;
+
   const targetUrl = `https://${targetHost}${url.pathname}${url.search}`;
+
+  const userDomains = await db
+  .select()
+  .from(schema.domains)
+  .where(eq(schema.domains.user_id, 123));
+
+  console.log('user domains', userDomains)
   
   try {
     // Build clean headers
@@ -88,8 +61,6 @@ app.all('*', async (c) => {
       method: c.req.method,
       headers: requestHeaders,
       redirect: 'manual',
-
-      //error" | "follow" | "manual";
     };
     
     if (hasBody) {
@@ -138,15 +109,11 @@ app.all('*', async (c) => {
   }
 });
 
-export default app;
-
-// Start the server
-import { serve } from '@hono/node-server';
-
 serve({
   fetch: app.fetch,
   port: Number(process.env.PORT) || 3000,
 }, (info) => {
   console.log(`Server running on http://localhost:${info.port}`);
-  console.log(`Set Cookie: user=philip to proxy to ${PHILIP_HOST}`);
 });
+
+export default app;
