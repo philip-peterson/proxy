@@ -13,6 +13,8 @@ const dbConfig = {
   database: process.env.PGDATABASE,
 };
 
+console.log('dbconfig is', dbConfig)
+
 // Create connection pool
 const pool = new Pool(dbConfig);
 
