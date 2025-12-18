@@ -1,24 +1,20 @@
-import { eq } from 'drizzle-orm'
-import { Hono, MiddlewareHandler } from 'hono'
+import { Hono } from 'hono'
 import { getPath } from 'hono/utils/url'
 import { serve } from '@hono/node-server'
 
 import { testConnection } from './db'
-import * as schema from './db/schema'
 import * as middleware from './middleware'
 import { Env } from './types'
 import { replaceDomainInHTML } from './replace'
 
 const app = new Hono<Env>({
-  // getPath(request, options) {
-  //   const path = getPath(request);
-  //   const { hostname } = new URL(request.url);
-  //   if (hostname )
-  //   const prefix = hostname.includes('.')
-  //     ? `/${hostname.split('.')[0]}`
-  //     : '';
-  //   return `${prefix}${path}`;
-  // },
+  getPath(request, options) {
+    const path = getPath(request)
+    const { hostname } = new URL(request.url)
+    if (hostname)
+      const prefix = hostname.includes('.') ? `/${hostname.split('.')[0]}` : ''
+    return `${prefix}${path}`
+  },
 })
 
 app.use(
