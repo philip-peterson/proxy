@@ -18,6 +18,9 @@ const app = new Hono<Env>({
 
     const matches = hostname.match(/^([a-z0-9])+(\.dev)?\.app\.onetrueos\.com$/)
     if (matches) {
+      if (matches[1] === 'app') {
+        return '/app/' + path
+      }
       return '/instance/' + matches[1] + '/' + path
     } else {
       const matches = hostname.match(/^(dev\.)?app\.onetrueos\.com$/)
