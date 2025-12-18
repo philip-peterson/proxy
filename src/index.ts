@@ -16,13 +16,13 @@ const app = new Hono<Env>({
       return path
     }
 
-    const matches = hostname.match(/^([a-z0-9])+(\.dev)?\.onetrueos\.com$/)
+    const matches = hostname.match(/^([a-z0-9])+(\.dev)?\.app\.onetrueos\.com$/)
     if (matches) {
-      return '/instance/' + matches[1]
+      return '/instance/' + matches[1] + '/' + path
     } else {
-      const matches = hostname.match(/^app?\.onetrueos\.com$/)
+      const matches = hostname.match(/^(dev\.)?app\.onetrueos\.com$/)
       if (matches) {
-        return '/app'
+        return '/app/' + path
       }
     }
 
@@ -38,7 +38,7 @@ app.use(
   middleware.logRequest
 )
 
-app.get('/app', async (c) => {
+app.get('/app/*', async (c) => {
   return new Response('foob ar')
 })
 
