@@ -28,7 +28,13 @@ app.use(
 )
 
 app.get('/app/*', async (c) => {
-  return new Response('foob ar')
+  return c.html(
+    <html>
+      <body>
+        <h1>Hello {c.req.query('name')}</h1>
+      </body>
+    </html>
+  )
 })
 
 app.all('/instance/*', async (c) => {

@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "outDir": "dist",
+    "jsxImportSource": "hono/jsx",
+    "jsx": "react-jsx",
 
     "incremental": true,
     "target": "es6",
