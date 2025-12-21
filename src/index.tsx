@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { getPath } from 'hono/utils/url'
 import { serve } from '@hono/node-server'
+// import session from 'express-session'
 
 import { testConnection } from './db'
 import * as middleware from './middleware'
@@ -26,6 +27,7 @@ app.use(
   middleware.selectTargetHost,
   middleware.logRequest
 )
+
 
 app.get('/app/*', async (c) => {
   return c.html(
