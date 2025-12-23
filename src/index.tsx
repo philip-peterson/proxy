@@ -1,7 +1,8 @@
+import dotenv from 'dotenv';
+
 import { Hono } from 'hono'
 import { getPath } from 'hono/utils/url'
 import { serve } from '@hono/node-server'
-// import session from 'express-session'
 
 import { testConnection } from './db'
 import * as middleware from './middleware'
@@ -10,6 +11,9 @@ import { replaceDomainInHTML } from './replace'
 import { pathFromHostnameAndPath } from './utils'
 import authRoutes from './routes/auth'
 import { useState } from 'hono/jsx'
+
+dotenv.config(); // Loads .env from root
+
 
 const app = new Hono<Env>({
   getPath(request, options) {
