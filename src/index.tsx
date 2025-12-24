@@ -20,6 +20,7 @@ dotenv.config() // Loads .env from root
 const app = new Hono<Env>({
   getPath(request, options) {
     const path = getPath(request)
+    console.log('parsing3333,', request.url)
     const { hostname } = new URL(request.url)
 
     return pathFromHostnameAndPath(hostname, path)
@@ -71,6 +72,7 @@ app.get('/app/*', async (c) => {
 
 app.all('/instance/*', async (c) => {
   const targetHost = c.get('targetHost')
+  console.log('parsing2222,', c.req.url)
   const url = new URL(c.req.url)
   const host = url.host
 

@@ -32,6 +32,7 @@ export const parseCookies: MiddlewareHandler<Env> = async (c, next) => {
 export const selectTargetHost: MiddlewareHandler<Env> = async (c, next) => {
   const cookies = c.get('cookies')
 
+  console.log('parsing1111,', c.req.url)
   const url = new URL(c.req.url)
   const initialPart = url.host.split('.')[0]
   const db = c.get('db')
