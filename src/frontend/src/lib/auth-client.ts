@@ -1,5 +1,5 @@
-import { createAuthClient } from "better-auth/react";
-import { inferAdditionalFields } from "better-auth/client/plugins";
+import { createAuthClient } from 'better-auth/react'
+import { inferAdditionalFields } from 'better-auth/client/plugins'
 
 const isLocalhost = () => {
   return window.location.hostname === 'localhost'
@@ -11,12 +11,12 @@ export const authClient = createAuthClient({
     inferAdditionalFields({
       user: {
         roles: {
-          type: "string[]",
+          type: 'string[]',
         },
       },
     }),
   ],
-});
+})
 
 export const {
   useSession,
@@ -25,7 +25,7 @@ export const {
   signOut,
   forgetPassword,
   resetPassword,
-} = authClient;
+} = authClient
 
-export type Session = typeof authClient.$Infer.Session;
-export type User = typeof authClient.$Infer.Session.user;
+export type Session = typeof authClient.$Infer.Session
+export type User = typeof authClient.$Infer.Session.user

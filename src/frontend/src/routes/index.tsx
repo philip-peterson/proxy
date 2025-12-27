@@ -1,3 +1,5 @@
+import { Theme } from '@radix-ui/themes'
+
 import { createFileRoute } from '@tanstack/react-router'
 import { useSession } from '../lib/auth-client'
 export const Route = createFileRoute('/')({
@@ -5,7 +7,27 @@ export const Route = createFileRoute('/')({
 })
 
 function Index() {
-  const { data: session } = useSession()
+  return (
+    <html>
+      <body>
+        <Theme>
+          <MyApp />
+        </Theme>
+      </body>
+    </html>
+  )
+}
+
+function MyApp() {
+  const { data: session, isPending, error } = useSession()
+
+  if (isPending) {
+    return <div>loading...</div>
+  }
+
+  if (error) {
+    return <div>ERROR: {`${error}`}</div>
+  }
 
   return (
     <div className="p-2">

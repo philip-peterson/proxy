@@ -16,7 +16,7 @@ export const auth = betterAuth({
   trustedOrigins: [
     'http://localhost:5173',
     'https://app.onetrueos.com',
-    'https://app.app.onetrueos.com'
+    'https://app.app.onetrueos.com',
   ],
   emailAndPassword: {
     enabled: true,
