@@ -8,7 +8,7 @@ import { serveStatic } from '@hono/node-server/serve-static'
 import { getPath } from 'hono/utils/url'
 import { serve } from '@hono/node-server'
 
-import { testConnection } from './db'
+import { testConnection } from './db/index'
 import * as middleware from './middleware'
 import { Env } from './types'
 import { replaceDomainInHTML } from './replace'

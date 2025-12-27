@@ -1,5 +1,5 @@
 import { MiddlewareHandler } from 'hono'
-import { db } from './db'
+import { db } from './db/index'
 import { Env } from './types'
 import * as schema from './db/schema'
 import { eq } from 'drizzle-orm'
