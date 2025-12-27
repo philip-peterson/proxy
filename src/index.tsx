@@ -49,12 +49,12 @@ app.basePath('/app/auth').route('/', authRoutes)
 
 app.get('/app/*', async (c) => {
   console.log('aaaaaa');
-  const fullPath = path.join(
-    process.cwd(),
-    'src/frontend/dist/.vite/manifest.json'
-  )
-  const manifest = JSON.parse(fs.readFileSync(fullPath, 'utf-8'))
-  const indexJs = manifest['index.html'].file
+  // const fullPath = path.join(
+  //   process.cwd(),
+  //   'src/frontend/dist/.vite/manifest.json'
+  // )
+  // const manifest = JSON.parse(fs.readFileSync(fullPath, 'utf-8'))
+  // const indexJs = manifest['index.html'].file
 
   return c.html(
     <html>
@@ -62,7 +62,7 @@ app.get('/app/*', async (c) => {
         <script
           type="module"
           crossorigin=""
-          src={'/static/' + indexJs}
+          // src={'/static/' + indexJs}
         ></script>
       </head>
       <body>
