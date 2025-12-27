@@ -95,6 +95,6 @@ export const accountRelations = relations(account, ({ one }) => ({
 export const domains = pgTable('domains', {
   domain_id: serial('domain_id').primaryKey(),
   domain_slug: text('domain_slug').notNull(),
-  user_id: integer('user_id').notNull().references(() => user.id),
+  user_id: text('user_id').notNull().references(() => user.id),
   cleartext: text('cleartext').notNull(),
 });
