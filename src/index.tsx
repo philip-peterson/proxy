@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 
 import fs from 'fs'
 import { Hono } from 'hono'
-import { useState } from 'hono/jsx'
+import { logger } from 'hono/logger'
 import path from 'path'
 import { serveStatic } from '@hono/node-server/serve-static'
 import { getPath } from 'hono/utils/url'
@@ -26,6 +26,8 @@ const app = new Hono<Env>({
     return pathFromHostnameAndPath(hostname, path)
   },
 })
+
+app.use(logger())
 
 app.use(
   '/instance/*',
