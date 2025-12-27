@@ -16,7 +16,9 @@ export const pathFromHostnameAndPath = (
     /^((?:[a-z0-9])+)\.app(?:\.dev)?\.onetrueos\.com$/
   )
   if (matches) {
+    console.log('matches!')
     if (matches[1] === 'app') {
+      console.log('matches app!')
       if (path.startsWith('/static/')) {
         return path
       }
@@ -24,8 +26,10 @@ export const pathFromHostnameAndPath = (
     }
     return '/instance/' + matches[1] + path
   } else {
+    console.log('does not matches!')
     const matches = hostname.match(/^app\.(?:dev\.)?onetrueos\.com$/)
     if (matches) {
+      console.log('does not matches regex!')
       return '/app' + path
     }
   }
