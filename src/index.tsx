@@ -178,8 +178,10 @@ app.all('/instance/*', async (c) => {
 })
 
 async function main() {
+  console.log('app starting')
   await testConnection()
 
+  console.log('ssserver starting')
   serve(
     {
       fetch: app.fetch,
