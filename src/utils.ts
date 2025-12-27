@@ -7,6 +7,7 @@ export const pathFromHostnameAndPath = (
   hostname: string,
   path: string
 ): string => {
+  console.log('reslving', hostname, path)
   if ('localhost' === hostname) {
     return path
   }
