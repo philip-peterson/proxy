@@ -39,7 +39,7 @@ app.use(
   middleware.logRequest
 )
 
-app.basePath('/app/auth').route('/', authRoutes)
+app.basePath('/app/api/auth').route('/', authRoutes)
 
 app.use(
   '/static/*',
@@ -60,9 +60,6 @@ app.get('/app/*', async (c) => {
   const indexHtml = manifest['index.html']
   const indexJs = indexHtml.file
   const css = indexHtml.css
-
-  // const css = manifest['index.html']
-  // "/${mainEntry.css[0]}"
 
   return c.html(
     <html>

@@ -3,7 +3,7 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { db } from './db/index.js'
 
 export const auth = betterAuth({
-  basePath: '/auth',
+  basePath: '/api/auth',
   database: drizzleAdapter(db, {
     provider: 'pg',
   }),
@@ -12,6 +12,7 @@ export const auth = betterAuth({
     'http://localhost:5173',
     'https://app.onetrueos.com',
     'https://app.app.onetrueos.com',
+    'https://app.app.onetrueos.com:5173',
   ],
   emailAndPassword: {
     enabled: true,

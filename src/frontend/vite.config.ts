@@ -12,10 +12,13 @@ export default defineConfig({
     react(),
   ],
   server: {
+    host: '0.0.0.0',
+    allowedHosts: [
+      'app.app.dev.onetrueos.com'
+    ],
     proxy: {
       "/api": {
-        target: "http://localhost:3000",
-        changeOrigin: true,
+        target: "http://app.app.dev.onetrueos.com:3000"
       },
     },
   },

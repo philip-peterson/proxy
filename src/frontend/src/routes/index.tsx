@@ -2,10 +2,6 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useSession } from '../lib/auth-client'
 import { Button } from '@base-ui/react/button';
 
-import '../index.css'
-
-console.log('index.tsx loaded') 
-
 export const Route = createFileRoute('/')({
   component: Index,
 })
