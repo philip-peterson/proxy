@@ -11,8 +11,16 @@
   "dependencies": {
     "@tanstack/react-router": "^1.115.3",
     "better-auth": "^1.2.5",
+    "fela-beautifier": "^12.2.1",
+    "fela-perf": "^12.2.1",
+    "fela-plugin-embedded": "^12.2.1",
+    "fela-plugin-fallback-value": "^12.2.1",
+    "fela-plugin-prefixer": "^12.2.1",
+    "fela-plugin-unit": "^12.2.1",
+    "fela-sort-media-query-mobile-first": "^12.2.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-fela": "^12.2.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
