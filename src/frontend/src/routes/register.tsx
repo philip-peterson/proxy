@@ -14,6 +14,8 @@ function RouteComponent() {
   const [name, setName] = useState('')
   const navigate = useNavigate()
 
+  const [error, setError] = useState<string | null>(null)
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -26,18 +28,24 @@ function RouteComponent() {
       { email, password, name, roles: ['STUDENT'] },
       {
         onSuccess: () => {
+          setError(null)
           navigate({ to: '/' })
         },
         onError: (error) => {
+          setError(error.error.message)
           console.error(error)
         },
       }
     )
   }
 
+
   return (
     <div>
       <h1>Register</h1>
+      {!!error && <div style={{color: 'red'}}>
+        Error: {error}
+      </div>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
