@@ -4,21 +4,27 @@ import { FadingBoxes } from './FadingBoxes'
 
 const Box = createComponent(() => ({
   display: 'flex',
+  justifyContent: 'center',
   margin: '0 auto',
   fontSize: '1rem',
-  width: '30.5rem',
-  height: '15.5rem',
-  border: '1px solid #777',
+  marginTop: '1em'
 }))
 
-const Contents = createComponent(() => ({
-  flexGrow: 1,
-  flexShrink: 1,
-}))
+const color = 'rgb(200, 128, 0)'
 
 const LeftSection = createComponent(() => ({
-  padding: '1em'
-  
+  padding: '1em',
+  background: '#ddd',
+  border: '3px double ' + color,
+  backgroundClip: 'padding-box',
+  'border-right': 0,
+}))
+
+const RightSection = createComponent(() => ({
+  background: '#ddd',
+  border: '3px double ' + color,
+  'border-left': 0,
+  backgroundClip: 'padding-box',
 }))
 
 const Title = createComponent(() => ({
@@ -40,7 +46,7 @@ export const LogoBox = ({ children }: PropsWithChildren) => {
           GlobalOS
         </Title>
       </LeftSection>
-      <Contents>{children}</Contents>
+      <RightSection>{children}</RightSection>
     </Box>
   )
 }

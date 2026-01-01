@@ -14,7 +14,7 @@ function Index() {
   return (
     <Page>
       <LogoBox>
-        <div style={{ whiteSpace: 'nowrap', margin: 10 }}>
+        <div style={{ whiteSpace: 'nowrap', paddingLeft: '4em', paddingTop: '11em', paddingRight: '2em' }}>
           <Button onClick={() => {
             navigate({ to: '/login' })
           }}>Log In</Button>

@@ -1,12 +1,12 @@
 import { createComponent } from 'react-fela'
 
-const section = () => ({
+const Frame = createComponent(() => ({
   width: '100%',
   height: '100%',
   display: 'block',
-})
-
-const Frame = createComponent(section)
+  background: 'black',
+  overflow: 'auto',
+}))
 
 export const Page = ({ children }: React.PropsWithChildren) => {
   return <Frame>{children}</Frame>
