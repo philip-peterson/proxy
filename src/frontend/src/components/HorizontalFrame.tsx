@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react'
 import { createComponent } from 'react-fela'
 import { FadingBoxes } from './FadingBoxes'
+import { GlobalOsTitle } from './GlobalOsTitle'
 
 const Box = createComponent(() => ({
   display: 'flex',
@@ -27,24 +28,14 @@ const RightSection = createComponent(() => ({
   backgroundClip: 'padding-box',
 }))
 
-const Title = createComponent(() => ({
-  marginTop: '1em',
-  fontFamily: 'sans-serif',
-  fontStyle: 'italic',
-  textAlign: 'center',
-  fontSize: '1.3em',
-  fontWeight: 'bold',
-  letterSpacing: '2'
-}))
-
-export const LogoBox = ({ children }: PropsWithChildren) => {
+export const HorizontalFrame = ({ children }: PropsWithChildren) => {
   return (
     <Box>
       <LeftSection>
         <FadingBoxes />
-        <Title>
+        <GlobalOsTitle>
           GlobalOS
-        </Title>
+        </GlobalOsTitle>
       </LeftSection>
       <RightSection>{children}</RightSection>
     </Box>

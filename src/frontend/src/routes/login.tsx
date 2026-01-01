@@ -1,6 +1,8 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { signIn } from '../lib/auth-client'
 import { useState } from 'react'
+import { VerticalFrame } from '../components/VerticalFrame'
+import { Page } from '../components/Page'
 
 export const Route = createFileRoute('/login')({
   component: RouteComponent,
@@ -60,29 +62,33 @@ function RouteComponent() {
   }
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleEmailLogin}>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
-      <form onSubmit={handleGoogleLogin}>
-        <button type="submit">Login with Google</button>
-      </form>
-      <form onSubmit={handleGithubLogin}>
-        <button type="submit">Login with Github</button>
-      </form>
-    </div>
+    <Page>
+      <VerticalFrame>
+        <div>
+          <h1>Login</h1>
+          <form onSubmit={handleEmailLogin}>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button type="submit">Login</button>
+          </form>
+          <form onSubmit={handleGoogleLogin}>
+            <button type="submit">Login with Google</button>
+          </form>
+          <form onSubmit={handleGithubLogin}>
+            <button type="submit">Login with Github</button>
+          </form>
+        </div>
+      </VerticalFrame>
+    </Page>
   )
 }

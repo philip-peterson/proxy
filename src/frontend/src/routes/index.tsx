@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router'
 // import { useSession } from '../lib/auth-client'
 import { Button } from '@base-ui/react/button';
 import { Page } from '../components/Page'
-import { LogoBox } from '../components/LogoBox'
+import { HorizontalFrame } from '../components/LogoBox'
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -13,7 +13,7 @@ function Index() {
 
   return (
     <Page>
-      <LogoBox>
+      <HorizontalFrame>
         <div style={{ whiteSpace: 'nowrap', paddingLeft: '4em', paddingTop: '11em', paddingRight: '2em' }}>
           <Button onClick={() => {
             navigate({ to: '/login' })
@@ -23,7 +23,7 @@ function Index() {
             navigate({ to: '/register' })
           }}>Register</Button>
         </div>
-      </LogoBox>
+      </HorizontalFrame>
     </Page>
   )
 }
