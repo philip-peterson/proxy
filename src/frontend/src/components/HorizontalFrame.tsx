@@ -15,6 +15,7 @@ const color = 'rgb(200, 128, 0)'
 
 const LeftSection = createComponent(() => ({
   padding: '1em',
+  color: '#333',
   background: '#ddd',
   border: '3px double ' + color,
   backgroundClip: 'padding-box',
@@ -22,6 +23,7 @@ const LeftSection = createComponent(() => ({
 }))
 
 const RightSection = createComponent(() => ({
+  color: '#333',
   background: '#ddd',
   border: '3px double ' + color,
   'border-left': 0,

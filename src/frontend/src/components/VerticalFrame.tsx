@@ -3,34 +3,38 @@ import { createComponent } from 'react-fela'
 import { FadingBoxes } from './FadingBoxes'
 import { GlobalOsTitle } from './GlobalOsTitle'
 
+const color = 'rgb(200, 128, 0)'
+
+const BoxContainer = createComponent(() => ({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+}))
+
 const Box = createComponent(() => ({
+  border: '3px double ' + color,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
   fontSize: '1rem',
-  marginTop: '1em'
+  marginTop: '1em',
+  background: '#ddd',
+  backgroundClip: 'padding-box',
+  color: '#333',
 }))
-
-const color = 'rgb(200, 128, 0)'
 
 const TopSection = createComponent(() => ({
   padding: '1em',
-  background: '#ddd',
-  border: '3px double ' + color,
-  backgroundClip: 'padding-box',
-  'border-bottom': 0,
 }))
 
 const BottomSection = createComponent(() => ({
-  background: '#ddd',
-  border: '3px double ' + color,
-  'border-top': 0,
-  backgroundClip: 'padding-box',
+  padding: '1em',
 }))
 
 export const VerticalFrame = ({ children }: PropsWithChildren) => {
   return (
+    <BoxContainer>
     <Box>
       <TopSection>
         <FadingBoxes />
@@ -40,5 +44,6 @@ export const VerticalFrame = ({ children }: PropsWithChildren) => {
       </TopSection>
       <BottomSection>{children}</BottomSection>
     </Box>
+    </BoxContainer>
   )
 }

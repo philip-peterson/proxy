@@ -6,6 +6,7 @@ const Frame = createComponent(() => ({
   display: 'block',
   background: 'black',
   overflow: 'auto',
+  fontFamily: 'sans-serif',
 }))
 
 export const Page = ({ children }: React.PropsWithChildren) => {

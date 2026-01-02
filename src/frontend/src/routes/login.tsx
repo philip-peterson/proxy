@@ -3,6 +3,7 @@ import { signIn } from '../lib/auth-client'
 import { useState } from 'react'
 import { VerticalFrame } from '../components/VerticalFrame'
 import { Page } from '../components/Page'
+import { PageTitle } from '../components/PageTitle'
 
 export const Route = createFileRoute('/login')({
   component: RouteComponent,
@@ -65,21 +66,27 @@ function RouteComponent() {
     <Page>
       <VerticalFrame>
         <div>
-          <h1>Login</h1>
+          <PageTitle>Log In</PageTitle>
           <form onSubmit={handleEmailLogin}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button type="submit">Login</button>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div>
+              <button type="submit">Login</button>
+            </div>
           </form>
           <form onSubmit={handleGoogleLogin}>
             <button type="submit">Login with Google</button>
