@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router'
 // import { useSession } from '../lib/auth-client'
 import { Button } from '@base-ui/react/button';
 import { Page } from '../components/Page'
-import { HorizontalFrame } from '../components/LogoBox'
+import { HorizontalFrame } from '../components/HorizontalFrame'
 
 export const Route = createFileRoute('/')({
   component: Index,
