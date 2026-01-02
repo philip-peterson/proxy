@@ -18,7 +18,7 @@ function Index() {
    const userId = session?.user.id
 
    useEffect(() => {
-    if (!isPending && userId !== undefined) {
+    if (!isPending && !error && userId !== undefined) {
       navigate({ to: '/sessions' })
     }
 
