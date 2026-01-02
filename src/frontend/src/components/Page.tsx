@@ -4,7 +4,7 @@ const Frame = createComponent(() => ({
   width: '100%',
   height: '100%',
   display: 'block',
-  background: 'black',
+  background: '#14002d', // purple
   overflow: 'auto',
   fontFamily: 'sans-serif',
 }))
