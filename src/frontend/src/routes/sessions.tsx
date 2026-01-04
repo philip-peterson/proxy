@@ -1,4 +1,5 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { useQuery } from '@tanstack/query'
 import { VerticalFrame } from '../components/VerticalFrame'
 import { Page } from '../components/Page'
 import { PageTitle } from '../components/PageTitle'

@@ -1,10 +1,10 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 // import { useSession } from '../lib/auth-client'
 import { Button } from '@base-ui/react/button';
+import { useEffect } from 'react';
 import { Page } from '../components/Page'
 import { HorizontalFrame } from '../components/HorizontalFrame'
 import { useSession } from '../lib/auth-client';
-import { useEffect } from 'react';
 
 export const Route = createFileRoute('/')({
   component: Index,
