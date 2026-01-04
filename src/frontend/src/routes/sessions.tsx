@@ -21,6 +21,9 @@ function RouteComponent() {
           <PageTitle>Sessions</PageTitle>
         </div>
         <div>
+          <SessionList />
+        </div>
+        <div>
           <Button onClick={async () => {
 
             await signOut() // TODO handle error here
