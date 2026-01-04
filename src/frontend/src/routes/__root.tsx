@@ -1,11 +1,13 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { RendererProvider } from 'react-fela'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import createRenderer from '../lib/renderer'
 import { AnimationContext } from '../contexts/animation'
 
 const createRenderResult = createRenderer()
+const queryClient = new QueryClient()
 
 export const Route = createRootRoute({
   component: RouteComponent,
@@ -14,10 +16,12 @@ export const Route = createRootRoute({
 function RouteComponent() {
   return (
     <RendererProvider renderer={createRenderResult.renderer}>
-      <AnimationContext value={createRenderResult.animations}>
-        <Outlet />
-        <TanStackRouterDevtools />
-      </AnimationContext>
+      <QueryClientProvider client={queryClient}>
+        <AnimationContext value={createRenderResult.animations}>
+          <Outlet />
+          <TanStackRouterDevtools />
+        </AnimationContext>
+      </QueryClientProvider>
     </RendererProvider>
   )
 }
