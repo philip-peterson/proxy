@@ -92,10 +92,15 @@ export const accountRelations = relations(account, ({ one }) => ({
   }),
 }));
 
-export const sessionDomains = pgTable('session_domains', {
+export const process = pgTable('process', {
+  id: serial('id').primaryKey(),
+  session_id: text('session_id').notNull().references(() => sessions.id),
+});
+
+export const processDomains = pgTable('process_domains', {
   id: serial('id').primaryKey(),
   slug: text('domain_slug').notNull(),
-  session_id: text('sessions_id').notNull().references(() => sessions.id),
+  process_id: text('process_id').notNull().references(() => process.id),
   cleartext: text('cleartext').notNull(),
 });
 
