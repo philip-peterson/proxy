@@ -4,6 +4,9 @@
   "workspaces": [
     "frontend"
   ],
+  "engines": {
+    "node": "20.19.0"
+  },
   "scripts": {
     "dev:backend": "ts-node src/index.tsx",
     "dev:frontend": "cd src/frontend; npm run-script dev",
