@@ -52,8 +52,8 @@ WORKDIR /app
 RUN yarn run build:backend 
 RUN yarn run build:frontend
 
-#COPY ./scripts/entrypoint.sh /app/
+COPY ./scripts/entrypoint.sh /app/
 
-#RUN chmod +x /app/entrypoint.sh
-#
-#ENTRYPOINT ["/app/entrypoint.sh"]
+RUN chmod +x /app/entrypoint.sh
+
+ENTRYPOINT ["/app/entrypoint.sh"]
