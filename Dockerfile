@@ -1,22 +1,27 @@
 FROM debian:bookworm-slim AS builder
 
-RUN apt-get update
-RUN apt-get install -y git bash curl #nodejs
+# Configurable
+#ENV PORT="3031"
+#ENV ENV="production"
+ENV DATABASE_URL=""
+ENV GITHUB_CLIENT_ID="foobar"
 
-# install nodenv
+# Install base deps
+RUN apt-get update
+RUN apt-get install -y git bash curl
+
+# Install nodenv
 RUN git clone https://github.com/OiNutter/nodenv /usr/local/nodenv
 RUN mkdir -p /usr/local/nodenv/plugins
 
-#ENV PORT="3031"
-#ENV ENV="production"
-ENV GITHUB_CLIENT_ID="foobar"
-
+# Update env for nodenv
 ENV NODENV_ROOT="/usr/local/nodenv"
 ENV PATH="$NODENV_ROOT/bin:$NODENV_ROOT/shims:$PATH"
 
 RUN git clone https://github.com/nodenv/node-build.git \
     $NODENV_ROOT/plugins/node-build
 
+# Prepare source tree
 
 WORKDIR /app
 
@@ -29,26 +34,26 @@ COPY ./Dockerfile /app
 COPY ./drizzle.config.ts /app
 COPY ./yarn.lock /app
 
-RUN nodenv install 20.19.0 \
- && nodenv global 20.19.0 \
- && npm i -g yarn \
- && nodenv rehash \
- && yarn install --frozen-lockfile \
- && yarn why @rollup/rollup-linux-arm64-gnu 
+# Prepare node
+
+RUN nodenv install 20.19.0 
+RUN nodenv global 20.19.0 
+RUN npm i -g yarn 
+RUN nodenv rehash
+RUN yarn install --frozen-lockfile 
+
+# Build frontend
 
 WORKDIR /app/src/frontend
 RUN yarn install --frozen-lockfile
-#RUN yarn why @rollup/rollup-linux-arm64-gnu 
 
 WORKDIR /app
 
 RUN yarn run build:backend 
 RUN yarn run build:frontend
 
-COPY ./scripts/entrypoint.sh /app/
+#COPY ./scripts/entrypoint.sh /app/
 
-ENV DATABASE_URL=""
-
-RUN chmod +x /app/entrypoint.sh
-
-ENTRYPOINT ["/app/entrypoint.sh"]
+#RUN chmod +x /app/entrypoint.sh
+#
+#ENTRYPOINT ["/app/entrypoint.sh"]
