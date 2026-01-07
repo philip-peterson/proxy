@@ -1,5 +1,6 @@
 {
   "name": "nodeproxy-backend",
+  "private": true,
   "workspaces": [
     "frontend"
   ],
@@ -36,6 +37,7 @@
     "pg": "^8.16.3",
     "prettier": "^3.7.4",
     "styled-components": "^6.1.19",
+    "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }
 }
