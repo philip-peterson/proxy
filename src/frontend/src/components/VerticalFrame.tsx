@@ -2,17 +2,16 @@ import { PropsWithChildren } from 'react'
 import { createComponent } from 'react-fela'
 import { FadingBoxes } from './FadingBoxes'
 import { GlobalOsTitle } from './GlobalOsTitle'
+import { LogoSection } from './LogoSection'
 
 const color = 'rgb(200, 128, 0)'
 
-const BoxContainer = createComponent(
-  () => ({
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  }),
-  'div'
-)
+const BoxContainer = createComponent(() => ({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  marginTop: '1em',
+}))
 
 const Box = createComponent(({ width }: { width?: string }) => ({
   width,
@@ -22,14 +21,9 @@ const Box = createComponent(({ width }: { width?: string }) => ({
   justifyContent: 'flex-start',
   alignItems: 'center',
   fontSize: '1rem',
-  marginTop: '1em',
   background: '#ddd',
   backgroundClip: 'padding-box',
   color: '#333',
-}))
-
-const TopSection = createComponent(() => ({
-  padding: '1em',
 }))
 
 const BottomSection = createComponent(() => ({
@@ -40,17 +34,14 @@ type Props = {
   width?: string
 }
 
-export const VerticalFrame = ({
-  children,
-  width,
-}: PropsWithChildren & Props) => {
+export const VerticalFrame = ({ children, width }: PropsWithChildren & Props) => {
   return (
     <BoxContainer>
       <Box width={width}>
-        <TopSection>
+        <LogoSection href="/">
           <FadingBoxes />
           <GlobalOsTitle>GlobalOS</GlobalOsTitle>
-        </TopSection>
+        </LogoSection>
         <BottomSection>{children}</BottomSection>
       </Box>
     </BoxContainer>

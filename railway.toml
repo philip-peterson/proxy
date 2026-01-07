@@ -1,3 +1,4 @@
 [build]
 builder = "NIXPACKS"
 buildCommand = "npm install && cd src/frontend && npm install && cd - && npm run build"
+RAILWAY_DOCKERFILE_PATH = "Dockerfile"
